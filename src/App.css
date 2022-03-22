@@ -5,6 +5,12 @@ body {
   align-items: center;
 }
 
+.container {
+  width: 50vh;
+  border-radius: 5px;
+  border: 0.5px solid lightslategray;
+}
+
 .login {
   height: 50vh;
   display: flex;
@@ -25,8 +31,8 @@ input {
 
 button {
   width: 230px;
-  background-color: lightcoral;
-  border: 1px solid lightcoral;
+  background-color: lightslategrey;
+  border: 1px solid lightslategray;
   outline: none;
   border-radius: 20px;
   padding: 13px;
@@ -34,4 +40,12 @@ button {
   font-weight: 700;
   letter-spacing: 0.1px;
   cursor: pointer;
+}
+
+.username {
+  font-weight: bold;
+  color: lightslategray;
+  position: absolute;
+  top: 15px;
+  right: 20px;
 }
