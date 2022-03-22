@@ -8,11 +8,17 @@ import { BiMessageRounded } from "react-icons/bi";
 import { RiShareBoxLine } from "react-icons/ri";
 import { useState } from "react";
 
-const Card = ({ post }) => {
+const Card = ({ post, socket, user }) => {
   const [liked, setLiked] = useState(false);
 
-  const handleNotification = () => {
-    setLiked(true);
+  const handleNotification = (type) => {
+    type === 1 && setLiked(true);
+
+    socket.emit("sendNotification", {
+      senderName: user,
+      receiverName: post.username,
+      type: type,
+    });
   };
 
   const heartIconCss = `${styles["card-icon"]} ${
@@ -27,13 +33,19 @@ const Card = ({ post }) => {
       </div>
       <img src={post.postImg} alt="" className={styles["post-img"]} />
       <div className={styles.interaction}>
-        <span className={heartIconCss} onClick={handleNotification}>
+        <span className={heartIconCss} onClick={() => handleNotification(1)}>
           {liked ? <AiFillHeart /> : <AiOutlineHeart />}
         </span>
-        <span className={styles["card-icon"]}>
+        <span
+          className={styles["card-icon"]}
+          onClick={() => handleNotification(2)}
+        >
           <BiMessageRounded />
         </span>
-        <span className={styles["card-icon"]}>
+        <span
+          className={styles["card-icon"]}
+          onClick={() => handleNotification(3)}
+        >
           <RiShareBoxLine />
         </span>
         <span className={styles["info-icon"]}>
